@@ -28,10 +28,12 @@ public class CategoriaController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<CategoriaModel> GetById(@PathVariable long id) {
-		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
-	}
+	private ResponseEntity<CategoriaModel> getById(@PathVariable long id){
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
+		}
 
 	@GetMapping("/{descricao}")
 	public ResponseEntity<List<CategoriaModel>> GetByCategoria(@PathVariable String descricao) {
